@@ -31,7 +31,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ route('home') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -40,7 +40,8 @@
             
             <!-- Nav Item - Employee Management -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">                    <span>Employee Management</span></a>
+                <a class="nav-link" href="index.html">                    
+                    <span>Employee Management</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
