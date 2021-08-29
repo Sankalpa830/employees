@@ -34,7 +34,7 @@
               <thead>
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">Country ID</th>
+                  <th scope="col">Country Name</th>
                   <th scope="col">State Name</th>
                   <th scope="col">Manage</th>
                 </tr>
@@ -43,7 +43,7 @@
                 @foreach ($states as $state)
                   <tr>
                       <th scope="row">{{ $state->id }}</th>
-                      <td>{{ $state->country->country_code}}</td>
+                      <td>{{ $state->country->name}}</td>
                       <td>{{ $state->name }}</td>
                       <td>
                         <a href="{{ route('states.edit',$state->id) }}" class="btn btn-success" >
