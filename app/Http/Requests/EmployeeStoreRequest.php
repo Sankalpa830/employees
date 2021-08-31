@@ -16,7 +16,7 @@ class EmployeeStoreRequest extends FormRequest
     {
         return [
             'first_name' => ['required'],
-            'middle_name'=> ['required'],
+            'middle_name'=> [''],
             'last_name'=> ['required'],
             'address'=> ['required'],
             'country_id'=> ['required'],
