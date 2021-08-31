@@ -15,13 +15,24 @@
                         
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-8">
+                                <div class="col-10">
                                     <form class="d-flex">
-                                        <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
-                                        <button class="btn btn-outline-info ml-2" type="submit">Search</button>
+                                        <input class="form-control me-2" type="search" v-model="search" placeholder="Search" aria-label="Search">
+                                        <!-- <button class="btn btn-outline-info ml-2" type="submit">Search</button> -->
+
+                                        <select v-model="selectedDepartment" name = 'department' class="form-control ml-2" aria-label="Default select example">
+                                        <option 
+                                            v-for="department in departments"
+                                            :key="department.id"
+                                            :value="department.id"
+                                        
+                                        > {{ department.name }}</option>
+                                        </select>
+
                                     </form>
+
                                 </div>
-                                <div class="col-4 text-right">
+                                <div class="col-2 text-right">
                                     <router-link :to="{name:'EmployeeCreate'}" class=" btn btn-outline-info"> Create </router-link>
                                 </div>
                             </div>
@@ -72,16 +83,34 @@ export default {
         return {
             employees : [],
             showMessage: false,
-            message : ''
+            message : '',
+            search : null,
+            selectedDepartment: null,
+            departments:[]
+        };
+    },
+    watch:{
+        search(){
+            this.getEmployees();
+        },
+        selectedDepartment(){
+            this.getEmployees();
         }
+
     },
     created() {
 
         this.getEmployees();
+        this.getDepartments();
     },
     methods : {
         getEmployees() {
-            axios.get('/api/employees')
+            axios.get('/api/employees',{
+                params: {
+                    search: this.search,
+                    department_id: this.selectedDepartment
+                }
+            })
                 .then(res=>{
                     this.employees = res.data.data
                 }).catch(error => {
@@ -95,6 +124,14 @@ export default {
                     this.message = res.data;
                     this.getEmployees();
                 });
+        },
+        getDepartments(){
+            axios.get('/api/employees/departments')
+                .then(res=>{
+                    this.departments = res.data;
+                }).catch(error=>{
+                    console.log(console.error);
+                })
         }
     }
 };

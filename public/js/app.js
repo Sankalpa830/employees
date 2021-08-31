@@ -2453,22 +2453,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       employees: [],
       showMessage: false,
-      message: ''
+      message: '',
+      search: null,
+      selectedDepartment: null,
+      departments: []
     };
+  },
+  watch: {
+    search: function search() {
+      this.getEmployees();
+    },
+    selectedDepartment: function selectedDepartment() {
+      this.getEmployees();
+    }
   },
   created: function created() {
     this.getEmployees();
+    this.getDepartments();
   },
   methods: {
     getEmployees: function getEmployees() {
       var _this = this;
 
-      axios.get('/api/employees').then(function (res) {
+      axios.get('/api/employees', {
+        params: {
+          search: this.search,
+          department_id: this.selectedDepartment
+        }
+      }).then(function (res) {
         _this.employees = res.data.data;
       })["catch"](function (error) {
         console.log(error);
@@ -2482,6 +2510,15 @@ __webpack_require__.r(__webpack_exports__);
         _this2.message = res.data;
 
         _this2.getEmployees();
+      });
+    },
+    getDepartments: function getDepartments() {
+      var _this3 = this;
+
+      axios.get('/api/employees/departments').then(function (res) {
+        _this3.departments = res.data;
+      })["catch"](function (error) {
+        console.log(console.error);
       });
     }
   }
@@ -60886,11 +60923,84 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "card-header" }, [
               _c("div", { staticClass: "row" }, [
-                _vm._m(1),
+                _c("div", { staticClass: "col-10" }, [
+                  _c("form", { staticClass: "d-flex" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.search,
+                          expression: "search"
+                        }
+                      ],
+                      staticClass: "form-control me-2",
+                      attrs: {
+                        type: "search",
+                        placeholder: "Search",
+                        "aria-label": "Search"
+                      },
+                      domProps: { value: _vm.search },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.search = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selectedDepartment,
+                            expression: "selectedDepartment"
+                          }
+                        ],
+                        staticClass: "form-control ml-2",
+                        attrs: {
+                          name: "department",
+                          "aria-label": "Default select example"
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.selectedDepartment = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      _vm._l(_vm.departments, function(department) {
+                        return _c(
+                          "option",
+                          {
+                            key: department.id,
+                            domProps: { value: department.id }
+                          },
+                          [_vm._v(" " + _vm._s(department.name))]
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "col-4 text-right" },
+                  { staticClass: "col-2 text-right" },
                   [
                     _c(
                       "router-link",
@@ -60908,7 +61018,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("table", { staticClass: "table" }, [
-                _vm._m(2),
+                _vm._m(1),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -60997,33 +61107,6 @@ var staticRenderFns = [
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-8" }, [
-      _c("form", { staticClass: "d-flex" }, [
-        _c("input", {
-          staticClass: "form-control me-2",
-          attrs: {
-            type: "search",
-            name: "search",
-            placeholder: "Search",
-            "aria-label": "Search"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-outline-info ml-2",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Search")]
-        )
-      ])
-    ])
   },
   function() {
     var _vm = this
