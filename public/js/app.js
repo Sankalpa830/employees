@@ -60302,7 +60302,7 @@ var render = function() {
               { staticClass: "card-header" },
               [
                 _vm._v(
-                  "\n                           Edit Employees\n                            "
+                  "\n                           Update Employees\n                            "
                 ),
                 _c(
                   "router-link",

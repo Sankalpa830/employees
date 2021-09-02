@@ -5,7 +5,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                           Edit Employees
+                           Update Employees
                             <router-link :to="{name:'EmployeeIndex'}" class=" btn btn-info float-right"> Back </router-link>
                     </div>
 

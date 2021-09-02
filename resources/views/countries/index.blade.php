@@ -18,7 +18,7 @@
           <div class="row">
             <div class="col-8">
               <form method="GET" action="{{ route('countries.index') }}" class="d-flex">
-                <input class="form-control me-2" type="search" name="search" placeholder="Search Country" aria-label="Search">
+                <input class="form-control me-2" type="search" name="search" placeholder="Search " aria-label="Search">
                 <button class="btn btn-outline-info ml-2" type="submit">Search</button>
               </form>
             </div>
