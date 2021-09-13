@@ -16,9 +16,8 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-10">
-                                    <form class="d-flex">
+                                    <div class="d-flex">
                                         <input class="form-control me-2" type="search" v-model="search" placeholder="Search" aria-label="Search">
-                                        <!-- <button class="btn btn-outline-info ml-2" type="submit">Search</button> -->
 
                                         <select v-model="selectedDepartment" name = 'department' class="form-control ml-2" aria-label="Default select example">
                                         <option 
@@ -29,7 +28,7 @@
                                         > {{ department.name }}</option>
                                         </select>
 
-                                    </form>
+                                    </div>
 
                                 </div>
                                 <div class="col-2 text-right">

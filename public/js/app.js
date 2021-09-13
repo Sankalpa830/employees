@@ -2463,7 +2463,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -60924,7 +60923,7 @@ var render = function() {
             _c("div", { staticClass: "card-header" }, [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-10" }, [
-                  _c("form", { staticClass: "d-flex" }, [
+                  _c("div", { staticClass: "d-flex" }, [
                     _c("input", {
                       directives: [
                         {
